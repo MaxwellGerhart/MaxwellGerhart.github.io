@@ -31,7 +31,7 @@ body {
 
 .banner::after {
     content: '';
-    background-image: url('Phil Foden.png'); /* Replace with your player image */
+    background-image: url('football_banner.png'); /* Replace with your player image */
     background-size: cover;
     background-position: center;
     opacity: 0.8;
