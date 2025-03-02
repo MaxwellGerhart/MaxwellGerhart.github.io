@@ -16,8 +16,30 @@
     </nav>
 
     <section class="content">
-        <h1>Blogs</h1>
-        <p>Coming soon...</p>
+        <h2>Recent Blog Posts</h2>
+        <div id="blog-container"></div>
     </section>
+    
+    <script>
+        async function loadBlogs() {
+            const response = await fetch('posts.json');
+            const posts = await response.json();
+            const container = document.getElementById('blog-container');
+    
+            posts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.innerHTML = `
+                    <h3>${post.title}</h3>
+                    <p><i>${post.date}</i></p>
+                    <p>${post.content}</p>
+                    <hr>
+                `;
+                container.appendChild(postElement);
+            });
+        }
+    
+        loadBlogs();
+    </script>
+    
 </body>
 </html>
