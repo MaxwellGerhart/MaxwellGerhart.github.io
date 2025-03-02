@@ -1,44 +1,52 @@
+/* Reset default margin and padding */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
 }
 
-.banner {
-    background: linear-gradient(90deg, red, yellow, green, blue, purple);
-    height: 60vh;
-    color: white;
+/* Navigation Bar */
+.navbar {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    background: #f4f4f4;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.nav-left {
+    display: flex;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.nav-right {
+    display: flex;
+}
+
+.icon img {
+    width: 24px;
+    height: 24px;
+    margin-left: 15px;
+}
+
+/* Clickable Banner */
+.banner {
+    background-image: url('football_banner.png');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-}
-
-.banner h1 {
-    font-size: 5em;
-    text-transform: uppercase;
-    margin: 0;
-    line-height: 1;
-    letter-spacing: 5px;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-.banner-content {
-    z-index: 2;
-}
-
-.banner::after {
-    content: '';
-    background-image: url('football_banner.png'); /* Replace with your player image */
-    background-size: cover;
-    background-position: center;
-    opacity: 0.8;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
+    margin-top: 50px; /* Adjusts for the fixed navbar */
 }
