@@ -61,4 +61,10 @@ body {
     margin-top: 50px; /* Adjusts for navbar height */
 }
 
+.content {
+    padding-top: 80px; /* Pushes content below navbar */
+    text-align: center;
+}
+
+
 
