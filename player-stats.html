@@ -39,26 +39,36 @@
             Papa.parse("d1_player_stats.csv", {
                 download: true,
                 header: true,
-                dynamicTyping: true,
+                dynamicTyping: true, // Ensures numeric values are treated correctly
                 complete: function (results) {
                     let data = results.data;
                     if (data.length === 0) return;
 
-                    // Generate table headers
                     let headers = Object.keys(data[0]);
                     let headerRow = headers.map(col => `<th>${col}</th>`).join("");
                     $("#table-header").html(headerRow);
 
                     // Generate table rows
                     let rows = data.map(row => {
-                        let rowHTML = headers.map(col => `<td>${row[col]}</td>`).join("");
+                        let rowHTML = headers.map(col => {
+                            let value = row[col];
+                            return `<td data-sort="${value}">${value}</td>`; // Ensures sorting works properly
+                        }).join("");
                         return `<tr>${rowHTML}</tr>`;
                     }).join("");
 
                     $("#player-stats tbody").html(rows);
 
-                    // Initialize DataTables
-                    $("#player-stats").DataTable();
+                    // Define columns for DataTables with numerical sorting where applicable
+                    let columnDefs = headers.map((col, index) => ({
+                        targets: index,
+                        type: (typeof data[0][col] === "number") ? "num" : "string"
+                    }));
+
+                    // Initialize DataTables with correct column types
+                    $("#player-stats").DataTable({
+                        columnDefs: columnDefs
+                    });
                 }
             });
         });
