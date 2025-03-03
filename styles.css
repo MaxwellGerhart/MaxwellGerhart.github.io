@@ -38,7 +38,7 @@ body {
 
 .icon img {
     width: 24px; /* Consistent size */
-    height: 24px;
+    height: auto; /* Consistent size */
 }
 
 /* Optional: Add a hover effect */
