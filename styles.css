@@ -53,6 +53,7 @@ body {
     background-position: center;
     height: auto; /* Ensures the full viewport minus navbar */
     width: 100%;
+    aspect-ratio: 1920 / 600;
     cursor: pointer;
     position: relative;
     display: flex;
