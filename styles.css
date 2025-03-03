@@ -33,12 +33,12 @@ body {
     display: flex;
     align-items: center; /* Ensures vertical alignment */
     gap: 10px; /* Adds space between icons */
-    margin-right: 20px; /* Keeps icons from touching the screen edge */
+    margin-right: 40px; /* Keeps icons from touching the screen edge */
 }
 
 .icon img {
     width: 24px; /* Consistent size */
-    height: auto; /* Consistent size */
+    height: 24px; /* Consistent size */
 }
 
 /* Optional: Add a hover effect */
