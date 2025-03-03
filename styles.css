@@ -61,6 +61,14 @@ body {
     margin-top: 50px; /* Adjusts for navbar height */
 }
 
+@media screen and (max-width: 768px) {
+    .banner {
+        height: 50vh; /* Reduce banner height on smaller screens */
+        background-size: contain; /* Ensure the entire image fits */
+        background-repeat: no-repeat;
+    }
+}
+
 .content {
     padding-top: 80px; /* Pushes content below navbar */
     text-align: center;
