@@ -17,41 +17,77 @@
 
     <section class="content">
         <h1>Data Visualizations</h1>
-        <div id="image-gallery" class="gallery"></div>
+        <div class="gallery">
+            <div class="image-container"><img src="Data Viz/haaland_shotmap.png" alt="haaland"></div>
+            <div class="image-container"><img src="Data Viz/mancitywingercomparison.jpg" alt="city wingers"></div>
+            
+            <!-- Double image slot -->
+            <div class="double-image">
+                <img src="Data Viz/Openda Matrix.png" alt="Openda 1">
+                <img src="Data Viz/OpendaRadar.jpg" alt="Openda 2">
+            </div>
+            
+            <div class="image-container"><img src="Data Viz/premierleaguexgscatter.jpg" alt="premier league"></div>
+            <div class="image-container"><img src="Data Viz/yamaldembeleradartest.jpg" alt="yamal"></div>
+        </div>
     </section>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const imageFolder = "Data Viz/"; // Folder where images are stored
-            const imageGallery = document.getElementById("image-gallery");
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        
+        .content {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
 
-            fetch(imageFolder) // Fetch file list (only works if server allows directory listing)
-                .then(response => response.text())
-                .then(text => {
-                    // Regex to extract image file names
-                    const imageFiles = [...text.matchAll(/href="([^"]+\.(jpg|jpeg|png|gif|svg))"/gi)]
-                        .map(match => match[1]);
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
 
-                    if (imageFiles.length === 0) {
-                        imageGallery.innerHTML = "<p>No images found.</p>";
-                        return;
-                    }
+        .image-container img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
 
-                    // Create image elements dynamically
-                    imageFiles.forEach(file => {
-                        let imgElement = document.createElement("img");
-                        imgElement.src = imageFolder + file;
-                        imgElement.alt = file;
-                        imgElement.classList.add("gallery-image"); // Style in CSS
+        /* Styling for the double image container */
+        .double-image {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-                        imageGallery.appendChild(imgElement);
-                    });
-                })
-                .catch(error => {
-                    console.error("Error loading images:", error);
-                    imageGallery.innerHTML = "<p>Could not load images.</p>";
-                });
-        });
-    </script>
+        .double-image img {
+            width: 48%;
+            max-width: 290px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Make images stack on small screens */
+        @media (max-width: 600px) {
+            .double-image {
+                flex-direction: column;
+            }
+
+            .double-image img {
+                width: 100%;
+            }
+        }
+    </style>
 </body>
 </html>
