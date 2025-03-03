@@ -11,14 +11,47 @@
         <div class="nav-left">
             <a href="index.html" class="nav-link">Home</a>
             <a href="about.html" class="nav-link">About Me</a>
-            <a href="player-stats.html" class="nav-link">Player Stats</a>
+            <a href="data-viz.html" class="nav-link">Data Viz</a>
         </div>
     </nav>
 
     <section class="content">
         <h1>Data Visualizations</h1>
-        <p>Coming soon...</p>
+        <div id="image-gallery" class="gallery"></div>
     </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const imageFolder = "Data Viz/"; // Folder where images are stored
+            const imageGallery = document.getElementById("image-gallery");
+
+            fetch(imageFolder) // Fetch file list (only works if server allows directory listing)
+                .then(response => response.text())
+                .then(text => {
+                    // Regex to extract image file names
+                    const imageFiles = [...text.matchAll(/href="([^"]+\.(jpg|jpeg|png|gif|svg))"/gi)]
+                        .map(match => match[1]);
+
+                    if (imageFiles.length === 0) {
+                        imageGallery.innerHTML = "<p>No images found.</p>";
+                        return;
+                    }
+
+                    // Create image elements dynamically
+                    imageFiles.forEach(file => {
+                        let imgElement = document.createElement("img");
+                        imgElement.src = imageFolder + file;
+                        imgElement.alt = file;
+                        imgElement.classList.add("gallery-image"); // Style in CSS
+
+                        imageGallery.appendChild(imgElement);
+                    });
+                })
+                .catch(error => {
+                    console.error("Error loading images:", error);
+                    imageGallery.innerHTML = "<p>Could not load images.</p>";
+                });
+        });
+    </script>
 </body>
 </html>
-
