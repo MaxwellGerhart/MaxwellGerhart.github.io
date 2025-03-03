@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Stats</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About Me</a>
+            <a href="data-viz.html" class="nav-link">Data Viz</a>
+        </div>
+    </nav>
+
+    <section class="content">
+        <h1>NCAA D1 Player Stats</h1>
+        <table id="player-stats" class="display" style="width:100%">
+            <thead>
+                <tr id="table-header"></tr> <!-- Column headers will be added dynamically -->
+            </thead>
+            <tbody></tbody> <!-- Data will be added dynamically -->
+        </table>
+    </section>
+
+    <!-- jQuery & DataTables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <!-- PapaParse for CSV Parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            Papa.parse("d1_player_stats.csv", {
+                download: true,
+                header: true,
+                dynamicTyping: true,
+                complete: function (results) {
+                    let data = results.data;
+                    if (data.length === 0) return;
+
+                    // Generate table headers
+                    let headers = Object.keys(data[0]);
+                    let headerRow = headers.map(col => `<th>${col}</th>`).join("");
+                    $("#table-header").html(headerRow);
+
+                    // Generate table rows
+                    let rows = data.map(row => {
+                        let rowHTML = headers.map(col => `<td>${row[col]}</td>`).join("");
+                        return `<tr>${rowHTML}</tr>`;
+                    }).join("");
+
+                    $("#player-stats tbody").html(rows);
+
+                    // Initialize DataTables
+                    $("#player-stats").DataTable();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
