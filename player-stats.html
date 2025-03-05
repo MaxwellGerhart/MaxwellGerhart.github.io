@@ -49,7 +49,7 @@
                 header: true,
                 dynamicTyping: true,
                 complete: function (results) {
-                    let data = results.data.filter(row => Object.keys(row).length > 0); // Filter out empty rows
+                    let data = results.data.filter(row => Object.values(row).some(value => value !== null && value !== "")); // Remove empty/null rows
                     if (data.length === 0) {
                         $("#loading-message").text("No data available.");
                         return;
@@ -61,7 +61,7 @@
 
                     let rows = data.map(row => {
                         let rowHTML = headers.map(col => {
-                            let value = row[col] !== undefined ? row[col] : "";
+                            let value = row[col] !== undefined && row[col] !== null ? row[col] : "-";
                             return `<td data-sort="${value}">${value}</td>`;
                         }).join("");
                         return `<tr>${rowHTML}</tr>`;
