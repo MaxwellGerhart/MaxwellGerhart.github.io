@@ -47,36 +47,35 @@
             Papa.parse("d1_player_stats_clean.csv", {
                 download: true,
                 header: true,
-                dynamicTyping: true, // Ensures numeric values are treated correctly
+                dynamicTyping: true,
                 complete: function (results) {
-                    let data = results.data;
-                    if (data.length === 0) return;
+                    let data = results.data.filter(row => Object.keys(row).length > 0); // Filter out empty rows
+                    if (data.length === 0) {
+                        $("#loading-message").text("No data available.");
+                        return;
+                    }
 
                     let headers = Object.keys(data[0]);
                     let headerRow = headers.map(col => `<th>${col}</th>`).join("");
                     $("#table-header").html(headerRow);
 
-                    // Generate table rows
                     let rows = data.map(row => {
                         let rowHTML = headers.map(col => {
-                            let value = row[col];
-                            return `<td data-sort="${value}">${value}</td>`; // Ensures sorting works properly
+                            let value = row[col] !== undefined ? row[col] : "";
+                            return `<td data-sort="${value}">${value}</td>`;
                         }).join("");
                         return `<tr>${rowHTML}</tr>`;
                     }).join("");
 
                     $("#player-stats tbody").html(rows);
 
-                    // Define columns for DataTables with numerical sorting where applicable
-                    let columnDefs = headers.map((col, index) => ({
-                        targets: index,
-                        type: (typeof data[0][col] === "number") ? "num" : "string"
-                    }));
-
-                    // Initialize DataTables with correct column types
-                    $("#player-stats").DataTable({
-                        columnDefs: columnDefs
-                    });
+                    $("#player-stats").DataTable();
+                    
+                    $("#loading-message").hide(); // Hide loading message
+                    $("#player-stats").show(); // Show table
+                },
+                error: function () {
+                    $("#loading-message").text("Error loading data.");
                 }
             });
         });
