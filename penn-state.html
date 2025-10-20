@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penn State Soccer Website - Maxwell Gerhart</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .project-intro {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .project-intro h2 {
+            color: #4a90e2;
+            margin-bottom: 1rem;
+        }
+
+        .project-intro p {
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .screenshot-gallery {
+            display: grid;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .screenshot-item {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .screenshot-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+        }
+
+        .screenshot-item h3 {
+            color: #4a90e2;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .screenshot-item p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            color: #ccc;
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 2px solid rgba(74, 144, 226, 0.3);
+            transition: border-color 0.3s ease;
+            cursor: pointer;
+            background: white;
+            display: block;
+        }
+
+        .screenshot-item img:hover {
+            border-color: #4a90e2;
+        }
+
+        /* Modal for full-size image viewing */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 85%;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #4a90e2;
+        }
+
+        @media (max-width: 768px) {
+            .screenshot-gallery {
+                padding: 0 1rem;
+                gap: 2rem;
+            }
+
+            .screenshot-item {
+                padding: 1.5rem;
+            }
+
+            .project-intro {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About Me</a>
+            <a href="data-viz.html" class="nav-link">Data Viz</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://medium.com/@maxwellgerhart" target="_blank" rel="noopener noreferrer" class="icon"><img src="medium-icon.png" alt="Medium"></a>
+            <a href="https://x.com/StatMaximum" target="_blank" rel="noopener noreferrer" class="icon"><img src="x-icon.png" alt="X"></a>
+            <a href="https://www.instagram.com/americascouted/" target="_blank" rel="noopener noreferrer" class="icon"><img src="instagram-icon.png" alt="Instagram"></a>
+            <a href="https://www.linkedin.com/in/maxwell-gerhart-855644223/" target="_blank" rel="noopener noreferrer" class="icon"><img src="linkedin-icon.png" alt="LinkedIn"></a>
+            <a href="https://github.com/MaxwellGerhart" target="_blank" rel="noopener noreferrer" class="icon"><img src="github-icon.png" alt="GitHub"></a>
+        </div>
+    </nav>
+
+    <section class="content">
+        <h1>Penn State Soccer Website</h1>
+        
+        <div class="project-intro">
+            <h2>Project Overview</h2>
+            <p>A comprehensive soccer analytics platform designed for Penn State soccer, featuring advanced player statistics, comparison tools, and squad building capabilities.</p>
+            <p>This web application provides an intuitive interface for analyzing player performance, comparing multiple players side-by-side, and creating custom squad formations with detailed player metrics.</p>
+        </div>
+
+        <div class="screenshot-gallery">
+            <div class="screenshot-item">
+                <h3>Login Page</h3>
+                <p>Secure authentication interface with a clean, modern design that welcomes users to the Penn State soccer analytics platform.</p>
+                <img src="Penn State/Login_Page.png" alt="Login Page" onclick="openModal(this.src)">
+            </div>
+
+            <div class="screenshot-item">
+                <h3>Index Page</h3>
+                <p>The main dashboard providing an overview of the platform's features and quick access to all major sections of the application.</p>
+                <img src="Penn State/Index_Page.png" alt="Index Page" onclick="openModal(this.src)">
+            </div>
+
+            <div class="screenshot-item">
+                <h3>Player Page</h3>
+                <p>Detailed individual player statistics and performance metrics, displaying comprehensive data visualization and analytics for in-depth player analysis.</p>
+                <img src="Penn State/Player_Page.png" alt="Player Page" onclick="openModal(this.src)">
+            </div>
+
+            <div class="screenshot-item">
+                <h3>Player Comparison Page</h3>
+                <p>Side-by-side player comparison tool enabling coaches and analysts to evaluate multiple players simultaneously across various performance metrics.</p>
+                <img src="Penn State/Player_Comparison_Page.png" alt="Player Comparison Page" onclick="openModal(this.src)">
+            </div>
+
+            <div class="screenshot-item">
+                <h3>Squad Builder Page</h3>
+                <p>Interactive squad formation builder allowing users to create and visualize custom team lineups with detailed player information and tactical positioning.</p>
+                <img src="Penn State/Squad_Builder_Page.png" alt="Squad Builder Page" onclick="openModal(this.src)">
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for full-size images -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = src;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
