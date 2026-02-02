@@ -29,6 +29,15 @@ body {
     margin-right: 20px;
 }
 
+/* Make Penn State tab stand out */
+.nav-link-pennstate {
+    color: #003087;
+    transition: color 0.15s;
+}
+.nav-link-pennstate:hover {
+    color: #001e44;
+}
+
 .nav-right {
     display: flex;
     align-items: center; /* Ensures vertical alignment */
